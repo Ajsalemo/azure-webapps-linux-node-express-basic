@@ -58,6 +58,7 @@ stages:
               azureSubscription: 'Ansalemo(4388fa06-bf66-4497-82c2-991ba75ecb97)'
               acrName: 'ansalemoacr'
               dockerfilePath: './Dockerfile'
+              appSourcePath: './'
               imageToBuild: 'ansalemoacr.azurecr.io/ajsalemoazurewebappslinuxnodeexpressbasic:$(tag)'
               containerAppName: 'ansalemo-mi-ado-test'
               resourceGroup: 'ansalemo-rg'
