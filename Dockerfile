@@ -12,8 +12,6 @@ FROM node:18.12.1-alpine3.16 as production
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app .
 
-# Make the container entrypoint executable
-
 EXPOSE 8080 
 
 CMD [ "node", "/usr/src/app/server.js" ] 
