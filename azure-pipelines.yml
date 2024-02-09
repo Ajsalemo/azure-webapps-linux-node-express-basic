@@ -38,4 +38,32 @@ stages:
         tags: |
           $(tag)
 
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: $(environmentName)
+    pool:
+      vmImage: $(vmImageName)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureContainerApps@1
+            inputs:
+              azureSubscription: 'Ansalemo(4388fa06-bf66-4497-82c2-991ba75ecb97)'
+              acrName: 'ansalemoacr'
+              dockerfilePath: './Dockerfile'
+              imageToBuild: 'ansalemoacr.azurecr.io/ajsalemoazurewebappslinuxnodeexpressbasic:$(tag)'
+              containerAppName: 'ansalemo-mi-ado-test'
+              resourceGroup: 'ansalemo-rg'
+              containerAppEnvironment: 'managedEnvironment-ansalemorg-9b84'
+              targetPort: '3000'
+              location: 'eastus'
+              ingress: '3000'
+
   
