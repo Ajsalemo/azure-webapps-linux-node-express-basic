@@ -14,6 +14,6 @@ COPY --from=build /usr/src/app .
 
 # Make the container entrypoint executable
 
-EXPOSE 3000 
+EXPOSE 8080 
 
 CMD [ "node", "/usr/src/app/server.js" ] 

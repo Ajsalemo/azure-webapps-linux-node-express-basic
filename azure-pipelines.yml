@@ -61,7 +61,7 @@ stages:
               containerAppName: 'ansalemo-mi-ado-test'
               resourceGroup: 'ansalemo-rg'
               containerAppEnvironment: 'managedEnvironment-ansalemorg-9b84'
-              targetPort: '3000'
+              targetPort: '8080'
               location: 'eastus'
               ingress: 'external'
 
