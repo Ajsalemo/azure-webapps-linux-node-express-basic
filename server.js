@@ -1,5 +1,5 @@
 import express from "express";
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8090;
 const app = express();
 
 import homeController from "./controllers/homeController.js";

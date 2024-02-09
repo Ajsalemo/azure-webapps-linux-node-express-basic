@@ -60,7 +60,7 @@ stages:
               containerAppName: 'ansalemo-mi-test-3'
               resourceGroup: 'ansalemo-rg'
               containerAppEnvironment: 'managedEnvironment-ansalemorg-9b84'
-              targetPort: '8080'
+              targetPort: '8090'
               location: 'eastus'
               ingress: 'external'
 
