@@ -38,7 +38,6 @@ stages:
         tags: |
           $(tag)
 
-
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
@@ -59,9 +58,5 @@ stages:
               imageToDeploy: 'ansalemoacr.azurecr.io/ajsalemoazurewebappslinuxnodeexpressbasic:$(tag)'
               containerAppName: 'ansalemo-sys-pull'
               resourceGroup: 'ansalemo-rg'
-              containerAppEnvironment: 'managedEnvironment-ansalemorg-9b84'
-              targetPort: '8090'
-              location: 'eastus'
-              ingress: 'external'
 
   
