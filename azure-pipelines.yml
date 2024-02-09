@@ -56,7 +56,6 @@ stages:
           - task: AzureContainerApps@1
             inputs:
               azureSubscription: 'Ansalemo(4388fa06-bf66-4497-82c2-991ba75ecb97)'
-              acrName: 'ansalemoacr'
               imageToDeploy: 'ansalemoacr.azurecr.io/ajsalemoazurewebappslinuxnodeexpressbasic:$(tag)'
               containerAppName: 'ansalemo-mi-test-3'
               resourceGroup: 'ansalemo-rg'
