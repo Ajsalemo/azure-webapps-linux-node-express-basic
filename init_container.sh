@@ -1,3 +1,3 @@
 #!/bin/sh
 
-node /usr/src/app/server.js
+npm run start
