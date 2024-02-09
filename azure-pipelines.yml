@@ -63,6 +63,6 @@ stages:
               containerAppEnvironment: 'managedEnvironment-ansalemorg-9b84'
               targetPort: '3000'
               location: 'eastus'
-              ingress: '3000'
+              ingress: 'external'
 
   
