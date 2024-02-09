@@ -13,8 +13,7 @@ WORKDIR /usr/src/app
 COPY --from=build /usr/src/app .
 
 # Make the container entrypoint executable
-RUN chmod +x /usr/src/app/init_container.sh
 
 EXPOSE 3000 
 
-ENTRYPOINT [ "/usr/src/app/init_container.sh" ] 
+CMD [ "node", "/usr/src/app/server.js" ] 
