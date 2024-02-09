@@ -12,6 +12,7 @@ FROM node:18.12.1-alpine3.16 as production
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app .
 
+# Make the entrypoint executable
 RUN chmod +x /usr/src/app/init_container.sh
 
 EXPOSE 3000 
