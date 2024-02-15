@@ -1,0 +1,61 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'fe1330b6-dc0a-4bd8-8579-9348b440b735'
+  imageRepository: 'ajsalemoazurewebappslinuxnodeexpressbasic'
+  containerRegistry: 'ansalemoacr.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: $(environmentName)
+    pool:
+      vmImage: $(vmImageName)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureContainerApps@1
+            inputs:
+              azureSubscription: 'Ansalemo(4388fa06-bf66-4497-82c2-991ba75ecb97)'
+              imageToDeploy: 'ansalemoacr.azurecr.io/ajsalemoazurewebappslinuxnodeexpressbasic:$(tag)'
+              containerAppName: 'ansalemo-sys-pull-2'
+              resourceGroup: 'ansalemo-rg'
+
