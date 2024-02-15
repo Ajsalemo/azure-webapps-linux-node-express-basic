@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 
-router.get("/", (req, res, next) => {
+router.get("/", (_req, res, _next) => {
   res.json({ message: "azure-webapps-linux-node-express-basic (MI)" });
 });
 
